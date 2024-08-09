@@ -1,13 +1,37 @@
 import ApexCharts from "apexcharts";
 import React, { useEffect } from "react";
 
-const ChartComponent: React.FC = () => {
+interface ChartDonutProps {
+  series: number[];
+  labels: string[];
+  colors?: string[];
+  legendPosition?: "top" | "right" | "bottom" | "left";
+  showPercentages?: boolean; // NOTE: Propriedade para controlar a exibição das porcentagens
+}
+
+const ChartDonut: React.FC<ChartDonutProps> = ({
+  series,
+  labels,
+  colors = [],
+  legendPosition = "bottom",
+  showPercentages = true,
+}) => {
   useEffect(() => {
     const options = {
-      series: [44, 55, 41, 17, 15],
+      series: series,
       chart: {
         type: "donut",
       },
+      labels: labels,
+      colors: colors,
+      legend: {
+        position: legendPosition,
+        horizontalAlign: "left",
+      },
+      dataLabels: {
+        enabled: showPercentages,
+      },
+
       responsive: [
         {
           breakpoint: 480,
@@ -30,9 +54,8 @@ const ChartComponent: React.FC = () => {
     return () => {
       chart.destroy();
     };
-  }, []); // Run once on mount
-
-  return <div id="chart">{/* Chart will be rendered here */}</div>;
+  }, [series, labels, colors, legendPosition, showPercentages]);
+  return <div id="chart" />;
 };
 
-export default ChartComponent;
+export default ChartDonut;
