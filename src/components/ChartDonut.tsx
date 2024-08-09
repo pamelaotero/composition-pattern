@@ -6,7 +6,7 @@ interface ChartDonutProps {
   labels: string[];
   colors?: string[];
   legendPosition?: "top" | "right" | "bottom" | "left";
-  showPercentages?: boolean; // NOTE: Propriedade para controlar a exibição das porcentagens
+  showPercentages?: boolean;
 }
 
 const ChartDonut: React.FC<ChartDonutProps> = ({
@@ -34,13 +34,13 @@ const ChartDonut: React.FC<ChartDonutProps> = ({
 
       responsive: [
         {
-          breakpoint: 480,
+          breakpoint: 1000,
           options: {
             chart: {
               width: 200,
             },
             legend: {
-              position: "bottom",
+              position: legendPosition,
             },
           },
         },
