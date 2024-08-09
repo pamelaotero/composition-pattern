@@ -50,7 +50,7 @@ const ChartDonut: React.FC<ChartDonutProps> = ({
     const chart = new ApexCharts(document.querySelector("#chart")!, options);
     chart.render();
 
-    // Clean up on unmount
+    // NOTE: Clean up on unmount
     return () => {
       chart.destroy();
     };
